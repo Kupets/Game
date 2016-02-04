@@ -3,10 +3,11 @@ package ru.engine;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
 
 /**
  * Created by Crow on 27.01.2016.
@@ -15,6 +16,12 @@ public class Game extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
 
     private boolean running;
+
+    private boolean upPressed = false;
+    private boolean downPressed = false;
+
+    private static int x = 0;
+    private static int y = 0;
 
     public static int WIDTH = 400;
     public static int HEIGHT = 300;
@@ -42,7 +49,8 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void init() {
-        hero = getSprite("man.png");
+        hero = getSprite("/resources/bar.png");
+        addKeyListener(new KeyInputHandler());
     }
 
     public void render() {
@@ -56,21 +64,46 @@ public class Game extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics(); //получаем Graphics из созданной нами BufferStrategy
         g.setColor(Color.black); //выбрать цвет
         g.fillRect(0, 0, getWidth(), getHeight()); //заполнить прямоугольник
-        hero.draw(g, 20, 20);
+        hero.draw(g, x, y);
         g.dispose();
         bs.show(); //показать
     }
 
     public void update(long delta) {
-
+        if (upPressed == true) {
+            y--;
+        }
+        if (downPressed == true) {
+            y++;
+        }
     }
+
+    private class KeyInputHandler extends KeyAdapter {
+        public void keyPressed(KeyEvent e) { //клавиша нажата
+            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                upPressed = true;
+            }
+            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                downPressed = true;
+            }
+        }
+
+        public void keyReleased(KeyEvent e) { //клавиша отпущена
+            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                upPressed = false;
+            }
+            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                downPressed = false;
+            }
+        }
+    }
+
 
     public Sprite getSprite(String path) {
         BufferedImage sourceImage = null;
 
         try {
-            URL url = this.getClass().getClassLoader().getResource(path);
-            sourceImage = ImageIO.read(url);
+            sourceImage = ImageIO.read(this.getClass().getResourceAsStream(path));
         } catch (IOException e) {
             e.printStackTrace();
         }
