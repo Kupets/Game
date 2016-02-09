@@ -1,13 +1,11 @@
 package ru.engine.object;
 
-import ru.engine.GameListener;
-
 import java.awt.*;
 
 /**
  * Created by Crow on 09.02.2016.
  */
-public class Board implements GameListener {
+public class Board implements GameObject {
     private static final long serialVersionUID = 1L;
 
     private int width;

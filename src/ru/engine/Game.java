@@ -2,6 +2,7 @@ package ru.engine;
 
 import ru.engine.object.Bar;
 import ru.engine.object.Board;
+import ru.engine.object.GameObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,10 +19,10 @@ public class Game extends Canvas implements Runnable {
 
     private boolean running;
 
-    ArrayList<GameListener> gameListeners = new ArrayList<GameListener>();
+    ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
-    public final void addToGame(GameListener gameListener) {
-        gameListeners.add(gameListener);
+    public final void addToGame(GameObject gameObject) {
+        gameObjects.add(gameObject);
     }
 
     public void start() {
@@ -45,45 +46,49 @@ public class Game extends Canvas implements Runnable {
             requestFocus();
         }
 
-        for(GameListener gameListener : gameListeners) {
-            gameListener.init(this);
+        for(GameObject gameObject : gameObjects) {
+            gameObject.init(this);
         }
     }
 
     public void render() {
         BufferStrategy bs = getBufferStrategy();
         Graphics g = bs.getDrawGraphics(); //получаем Graphics из созданной нами BufferStrategy
-        for(GameListener gameListener : gameListeners) {
-            gameListener.draw(g);
+        for(GameObject gameObject : gameObjects) {
+            gameObject.draw(g);
         }
         g.dispose();
         bs.show(); //показать
     }
 
     public void update() {
-        for(GameListener gameListener : gameListeners) {
-            gameListener.update();
+        for(GameObject gameObject : gameObjects) {
+            gameObject.update();
         }
     }
 
     public static void main(String[] args) {
         Game game = new Game();
+
+        //добавляем игровые обьекты
         Board board = new Board();
         game.addToGame(board);
         game.addToGame(new Bar(0, 0, board));
         game.addToGame(new Bar(WIDTH + 3, 0, board));
 
+        //интциализируется техническая хрень
         game.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        initJFame(game, board);
+        initJFame(game, board.getTitle());
 
+        //запуск
         game.start();
     }
 
-    private static void initJFame(Game game, Board board) {
-        JFrame frame = new JFrame(board.getTitle());
+    private static void initJFame(Component component, String title) {
+        JFrame frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
-        frame.add(game, BorderLayout.CENTER);
+        frame.add(component, BorderLayout.CENTER);
         frame.pack();
         frame.setResizable(false);
         frame.setVisible(true);

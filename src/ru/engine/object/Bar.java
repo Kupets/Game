@@ -1,7 +1,5 @@
 package ru.engine.object;
 
-import ru.engine.Game;
-import ru.engine.GameListener;
 import ru.engine.Sprite;
 
 import javax.imageio.ImageIO;
@@ -14,7 +12,7 @@ import java.io.IOException;
 /**
  * Created by Crow on 09.02.2016.
  */
-public class Bar implements GameListener {
+public class Bar implements GameObject {
     private static final long serialVersionUID = 1L;
 
     private boolean upPressed = false;
