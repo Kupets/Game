@@ -23,9 +23,11 @@ public class Game extends Canvas implements Runnable {
     private static int x = 0;
     private static int y = 0;
 
-    public static int WIDTH = 400;
-    public static int HEIGHT = 300;
+    public static int WIDTH = 800;
+    public static int HEIGHT = 600;
     public static String NAME = "TUTORIAL 1";
+    public static final int MOVE_SPEED_IN_MILLIS = 2;
+
 
     public static Sprite hero;
 
@@ -56,7 +58,7 @@ public class Game extends Canvas implements Runnable {
     public void render() {
         BufferStrategy bs = getBufferStrategy();
         if (bs == null) {
-            createBufferStrategy(2);
+            createBufferStrategy(3);
             requestFocus();
             return;
         }
@@ -70,12 +72,23 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void update(long delta) {
-        if (upPressed == true) {
+        if (upPressed == true && y > 0 && canMove()) {
             y--;
         }
-        if (downPressed == true) {
+        if (downPressed == true && y < HEIGHT - 40 && canMove()) {
             y++;
         }
+    }
+
+    private long lastKeyPressTimeMillis = 0;
+    private boolean canMove() {
+        boolean canMove = false;
+        if(System.currentTimeMillis() - lastKeyPressTimeMillis > MOVE_SPEED_IN_MILLIS) {
+            lastKeyPressTimeMillis = System.currentTimeMillis();
+            canMove = true;
+        }
+
+        return canMove;
     }
 
     private class KeyInputHandler extends KeyAdapter {
