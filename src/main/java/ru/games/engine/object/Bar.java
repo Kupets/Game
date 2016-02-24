@@ -1,6 +1,6 @@
-package ru.engine.object;
+package ru.games.engine.object;
 
-import ru.engine.Sprite;
+import ru.games.engine.Sprite;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
