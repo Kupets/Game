@@ -1,8 +1,8 @@
-package ru.engine;
+package ru.games.engine;
 
-import ru.engine.object.Bar;
-import ru.engine.object.Board;
-import ru.engine.object.GameObject;
+import ru.games.engine.object.Bar;
+import ru.games.engine.object.Board;
+import ru.games.engine.object.GameObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,12 +53,12 @@ public class Game extends Canvas implements Runnable {
 
     public void render() {
         BufferStrategy bs = getBufferStrategy();
-        Graphics g = bs.getDrawGraphics(); //получаем Graphics из созданной нами BufferStrategy
+        Graphics g = bs.getDrawGraphics(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Graphics пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ BufferStrategy
         for(GameObject gameObject : gameObjects) {
             gameObject.draw(g);
         }
         g.dispose();
-        bs.show(); //показать
+        bs.show(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     }
 
     public void update() {
@@ -70,17 +70,17 @@ public class Game extends Canvas implements Runnable {
     public static void main(String[] args) {
         Game game = new Game();
 
-        //добавляем игровые обьекты
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Board board = new Board();
         game.addToGame(board);
         game.addToGame(new Bar(0, 0, board));
         game.addToGame(new Bar(WIDTH + 3, 0, board));
 
-        //интциализируется техническая хрень
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         game.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         initJFame(game, board.getTitle());
 
-        //запуск
+        //пїЅпїЅпїЅпїЅпїЅпїЅ
         game.start();
     }
 

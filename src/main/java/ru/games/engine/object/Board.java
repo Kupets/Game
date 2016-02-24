@@ -1,4 +1,4 @@
-package ru.engine.object;
+package ru.games.engine.object;
 
 import java.awt.*;
 
@@ -18,8 +18,8 @@ public class Board implements GameObject {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.black);         //выбрать цвет
-        g.fillRect(0, 0, width, height); //заполнить прямоугольник
+        g.setColor(Color.black);         //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        g.fillRect(0, 0, width, height); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     }
 
     public void update() {

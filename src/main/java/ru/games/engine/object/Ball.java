@@ -1,4 +1,4 @@
-package ru.engine.object;
+package ru.games.engine.object;
 
 /**
  * Created by Crow on 09.02.2016.
