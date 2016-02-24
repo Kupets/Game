@@ -1,6 +1,6 @@
-package ru.engine.object;
+package ru.games.engine.object;
 
-import ru.engine.Sprite;
+import ru.games.engine.Sprite;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -34,7 +34,7 @@ public class Bar implements GameObject {
     }
 
     public void init(Component component) {
-        bar = getSprite("/resources/bar.png");
+        bar = getSprite("/bar.png");
         component.addKeyListener(new KeyInputHandler());
     }
 
@@ -56,7 +56,7 @@ public class Bar implements GameObject {
     }
 
     private class KeyInputHandler extends KeyAdapter {
-        public void keyPressed(KeyEvent e) { //клавиша нажата
+        public void keyPressed(KeyEvent e) { //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             if (e.getKeyCode() == KeyEvent.VK_UP) {
                 upPressed = true;
             }
@@ -65,7 +65,7 @@ public class Bar implements GameObject {
             }
         }
 
-        public void keyReleased(KeyEvent e) { //клавиша отпущена
+        public void keyReleased(KeyEvent e) { //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             if (e.getKeyCode() == KeyEvent.VK_UP) {
                 upPressed = false;
             }
