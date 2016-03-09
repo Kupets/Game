@@ -14,8 +14,6 @@ import java.util.ArrayList;
  */
 public class Game extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 600;
 
     private boolean running;
 
@@ -39,9 +37,9 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    public void init() {
+    private void init() {
         BufferStrategy bs = getBufferStrategy();
-        if (bs == null) {
+        if(bs == null) {
             createBufferStrategy(3);
             requestFocus();
         }
@@ -51,7 +49,12 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    public void render() {
+    public void init(String title, Dimension dimension) {
+        setPreferredSize(dimension);
+        initJFame(title);
+    }
+
+    private void render() {
         BufferStrategy bs = getBufferStrategy();
         Graphics g = bs.getDrawGraphics(); //�������� Graphics �� ��������� ���� BufferStrategy
         for(GameObject gameObject : gameObjects) {
@@ -61,34 +64,17 @@ public class Game extends Canvas implements Runnable {
         bs.show(); //��������
     }
 
-    public void update() {
+    private void update() {
         for(GameObject gameObject : gameObjects) {
             gameObject.update();
         }
     }
 
-    public static void main(String[] args) {
-        Game game = new Game();
-
-        //��������� ������� �������
-        Board board = new Board();
-        game.addToGame(board);
-        game.addToGame(new Bar(0, 0, board));
-        game.addToGame(new Bar(WIDTH + 3, 0, board));
-
-        //���������������� ����������� �����
-        game.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        initJFame(game, board.getTitle());
-
-        //������
-        game.start();
-    }
-
-    private static void initJFame(Component component, String title) {
+    private void initJFame(String title) {
         JFrame frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
-        frame.add(component, BorderLayout.CENTER);
+        frame.add(this, BorderLayout.CENTER);
         frame.pack();
         frame.setResizable(false);
         frame.setVisible(true);

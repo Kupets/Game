@@ -43,10 +43,16 @@ public class Bar implements GameObject {
     }
 
     public void update() {
-        if (upPressed == true && y > 0 && canMove()) {
+        if(canMove()) {
+            move();
+        }
+    }
+
+    private void move() {
+        if(upPressed == true && y > 0) {
             y--;
         }
-        if (downPressed == true && y < board.getHeight() - 50 && canMove()) {
+        if(downPressed == true && y < board.getHeight() - 50) {
             y++;
         }
     }
@@ -57,19 +63,19 @@ public class Bar implements GameObject {
 
     private class KeyInputHandler extends KeyAdapter {
         public void keyPressed(KeyEvent e) { //������� ������
-            if (e.getKeyCode() == KeyEvent.VK_UP) {
+            if(e.getKeyCode() == KeyEvent.VK_UP) {
                 upPressed = true;
             }
-            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            if(e.getKeyCode() == KeyEvent.VK_DOWN) {
                 downPressed = true;
             }
         }
 
         public void keyReleased(KeyEvent e) { //������� ��������
-            if (e.getKeyCode() == KeyEvent.VK_UP) {
+            if(e.getKeyCode() == KeyEvent.VK_UP) {
                 upPressed = false;
             }
-            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            if(e.getKeyCode() == KeyEvent.VK_DOWN) {
                 downPressed = false;
             }
         }
@@ -80,7 +86,7 @@ public class Bar implements GameObject {
 
         try {
             sourceImage = ImageIO.read(this.getClass().getResourceAsStream(path));
-        } catch (IOException e) {
+        } catch(IOException e) {
             e.printStackTrace();
         }
 
