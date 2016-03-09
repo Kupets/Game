@@ -12,15 +12,16 @@ public class Board implements GameObject {
     private int height;
     private final String TITLE = "Tenis. Bar fight!";
 
-    // тест коментов
     public void init(Component component) {
         width = component.getWidth();
         height = component.getHeight();
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.black);         //������� ����
-        g.fillRect(0, 0, width, height); //��������� �������������
+        // выбрать цвет
+        g.setColor(Color.black);
+        // заполнить прямоугольник
+        g.fillRect(0, 0, width, height);
     }
 
     public void update() {

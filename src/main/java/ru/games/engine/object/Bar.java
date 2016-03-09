@@ -62,7 +62,8 @@ public class Bar implements GameObject {
     }
 
     private class KeyInputHandler extends KeyAdapter {
-        public void keyPressed(KeyEvent e) { //������� ������
+        public void keyPressed(KeyEvent e) {
+            // клавиша нажата
             if(e.getKeyCode() == KeyEvent.VK_UP) {
                 upPressed = true;
             }
@@ -71,7 +72,8 @@ public class Bar implements GameObject {
             }
         }
 
-        public void keyReleased(KeyEvent e) { //������� ��������
+        public void keyReleased(KeyEvent e) {
+            // клавиша отпущена
             if(e.getKeyCode() == KeyEvent.VK_UP) {
                 upPressed = false;
             }

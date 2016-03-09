@@ -56,12 +56,14 @@ public class Game extends Canvas implements Runnable {
 
     private void render() {
         BufferStrategy bs = getBufferStrategy();
-        Graphics g = bs.getDrawGraphics(); //�������� Graphics �� ��������� ���� BufferStrategy
+        // получаем Graphics из созданной нами BufferStrategy
+        Graphics g = bs.getDrawGraphics();
         for(GameObject gameObject : gameObjects) {
             gameObject.draw(g);
         }
         g.dispose();
-        bs.show(); //��������
+        // показать
+        bs.show();
     }
 
     private void update() {

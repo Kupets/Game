@@ -15,16 +15,16 @@ public class Launcher {
     public static void main(String[] args) {
         Game game = new Game();
 
-        //��������� ������� �������
+        //добавляем игровые обьекты
         Board board = new Board();
         game.addToGame(board);
         game.addToGame(new Bar(0, 0, board));
         game.addToGame(new Bar(WIDTH + 3, 0, board));
 
-        //���������������� ����������� �����
+        // инициализируется техническая хрень
         game.init(board.getTitle(), new Dimension(WIDTH, HEIGHT));
 
-        //������
+        //запуск
         game.start();
     }
 }
