@@ -12,6 +12,7 @@ public class Board implements GameObject {
     private int height;
     private final String TITLE = "Tenis. Bar fight!";
 
+    // тест коментов
     public void init(Component component) {
         width = component.getWidth();
         height = component.getHeight();
