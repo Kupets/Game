@@ -15,7 +15,7 @@ public class Launcher {
     public static void main(String[] args) {
         Game game = new Game();
 
-        //добавляем игровые обьекты
+        // добавляем игровые обьекты
         Board board = new Board();
         game.addToGame(board);
         game.addToGame(new Bar(0, 0, board));
@@ -24,7 +24,7 @@ public class Launcher {
         // инициализируется техническая хрень
         game.init(board.getTitle(), new Dimension(WIDTH, HEIGHT));
 
-        //запуск
+        // запуск
         game.start();
     }
 }
