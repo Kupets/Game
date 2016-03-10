@@ -1,9 +1,8 @@
 package ru.games.engine;
 
-import ru.games.engine.object.Bar;
+import ru.games.engine.object.AiBar;
 import ru.games.engine.object.Board;
-
-import java.awt.*;
+import ru.games.engine.object.PlayerBar;
 
 /**
  * Created by Crow on 09.03.2016.
@@ -13,16 +12,13 @@ public class Launcher {
     private static final int HEIGHT = 600;
 
     public static void main(String[] args) {
-        Game game = new Game();
+        Game game = new Game(WIDTH, HEIGHT);
 
         // добавляем игровые обьекты
-        Board board = new Board();
+        Board board = new Board(WIDTH, HEIGHT);
         game.addToGame(board);
-        game.addToGame(new Bar(0, 0, board));
-        game.addToGame(new Bar(WIDTH + 3, 0, board));
-
-        // инициализируется техническая хрень
-        game.init(board.getTitle(), new Dimension(WIDTH, HEIGHT));
+        game.addToGame(new PlayerBar(0, HEIGHT/2, board));
+        game.addToGame(new AiBar(WIDTH + 3, HEIGHT/2, board));
 
         // запуск
         game.start();

@@ -10,7 +10,11 @@ public class Board implements GameObject {
 
     private int width;
     private int height;
-    private final String TITLE = "Tenis. Bar fight!";
+
+    public Board(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
 
     public void init(Component component) {
         width = component.getWidth();
@@ -33,9 +37,5 @@ public class Board implements GameObject {
 
     public int getWidth() {
         return width;
-    }
-
-    public String getTitle() {
-        return TITLE;
     }
 }

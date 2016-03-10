@@ -1,7 +1,5 @@
 package ru.games.engine;
 
-import ru.games.engine.object.Bar;
-import ru.games.engine.object.Board;
 import ru.games.engine.object.GameObject;
 
 import javax.swing.*;
@@ -15,9 +13,17 @@ import java.util.ArrayList;
 public class Game extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
 
+    private final String TITLE = "Tenis. Bar fight!";
+
     private boolean running;
 
     ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+
+    public Game(int width, int height) {
+        setPreferredSize(new Dimension(width, height));
+        // инициализируется техническая хрень
+        initJFame();
+    }
 
     public final void addToGame(GameObject gameObject) {
         gameObjects.add(gameObject);
@@ -49,11 +55,6 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    public void init(String title, Dimension dimension) {
-        setPreferredSize(dimension);
-        initJFame(title);
-    }
-
     private void render() {
         BufferStrategy bs = getBufferStrategy();
         // получаем Graphics из созданной нами BufferStrategy
@@ -72,8 +73,8 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    private void initJFame(String title) {
-        JFrame frame = new JFrame(title);
+    private void initJFame() {
+        JFrame frame = new JFrame(TITLE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.add(this, BorderLayout.CENTER);
