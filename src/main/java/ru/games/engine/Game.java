@@ -11,18 +11,14 @@ import java.util.ArrayList;
  * Created by Crow on 27.01.2016.
  */
 public class Game extends Canvas implements Runnable {
-    private static final long serialVersionUID = 1L;
-
-    private final String TITLE = "Tenis. Bar fight!";
-
+    ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     private boolean running;
 
-    ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
-    public Game(int width, int height) {
+    public Game(String title, int width, int height) {
         setPreferredSize(new Dimension(width, height));
         // инициализируется техническая хрень
-        initJFame();
+        initJFame(title);
     }
 
     public final void addToGame(GameObject gameObject) {
@@ -73,8 +69,8 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
-    private void initJFame() {
-        JFrame frame = new JFrame(TITLE);
+    private void initJFame(String title) {
+        JFrame frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
         frame.add(this, BorderLayout.CENTER);

@@ -1,27 +1,39 @@
 package ru.games.engine;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
- * Created by Crow on 27.01.2016.
+ * Created by Crow on 24.03.2016.
  */
 public class Sprite {
-    // изображение
+    private String spritePath;
     private Image image;
 
-    public Sprite(Image image) {
-        this.image = image;
+
+    public Sprite(String spritePath) {
+        this.spritePath = spritePath;
     }
 
-    public int getWidth() { //�������� ������ ��������
-        return image.getWidth(null);
+    public void init(Component component) {
+        initSprite(spritePath);
     }
 
-    public int getHeight() { //�������� ������ ��������
-        return image.getHeight(null);
+    private void initSprite(String path) {
+        BufferedImage sourceImage = null;
+
+        try {
+            sourceImage = ImageIO.read(this.getClass().getResourceAsStream(path));
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        image = Toolkit.getDefaultToolkit().createImage(sourceImage.getSource());
     }
 
-    public void draw(Graphics g, int x, int y) { //������ ��������
+    public void draw(Graphics g, int x, int y) {
         g.drawImage(image, x, y, null);
     }
 }

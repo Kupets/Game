@@ -6,10 +6,9 @@ import java.awt.*;
  * Created by Crow on 09.02.2016.
  */
 public class Board implements GameObject {
-    private static final long serialVersionUID = 1L;
-
     private int width;
     private int height;
+
 
     public Board(int width, int height) {
         this.width = width;
