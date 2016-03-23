@@ -1,6 +1,7 @@
 package ru.games.engine;
 
 import ru.games.engine.object.AiBar;
+import ru.games.engine.object.Ball;
 import ru.games.engine.object.Board;
 import ru.games.engine.object.PlayerBar;
 
@@ -17,6 +18,7 @@ public class Launcher {
         // добавляем игровые обьекты
         Board board = new Board(WIDTH, HEIGHT);
         game.addToGame(board);
+        game.addToGame(new Ball(WIDTH/2, HEIGHT/2, board));
         game.addToGame(new PlayerBar(0, HEIGHT/2, board));
         game.addToGame(new AiBar(WIDTH + 3, HEIGHT/2, board));
 
