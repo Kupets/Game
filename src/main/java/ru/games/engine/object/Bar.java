@@ -32,7 +32,6 @@ public abstract class Bar implements GameObject {
 
     @Override
     public void init(Component component) {
-        bar.init(component);
     }
 
     @Override

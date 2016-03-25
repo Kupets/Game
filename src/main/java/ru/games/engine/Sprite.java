@@ -9,15 +9,10 @@ import java.io.IOException;
  * Created by Crow on 24.03.2016.
  */
 public class Sprite {
-    private String spritePath;
     private Image image;
 
 
     public Sprite(String spritePath) {
-        this.spritePath = spritePath;
-    }
-
-    public void init(Component component) {
         initSprite(spritePath);
     }
 
