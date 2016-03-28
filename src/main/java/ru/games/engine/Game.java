@@ -1,6 +1,9 @@
 package ru.games.engine;
 
+import ru.games.engine.object.GameEvent;
 import ru.games.engine.object.GameObject;
+import ru.games.engine.object.Observable;
+import ru.games.engine.object.Observer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by Crow on 27.01.2016.
  */
-public class Game extends Canvas implements Runnable {
+public class Game extends Canvas implements Runnable, Observer {
     ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     private boolean running;
 
@@ -22,6 +25,9 @@ public class Game extends Canvas implements Runnable {
     }
 
     public final void addToGame(GameObject gameObject) {
+        if(gameObject instanceof Observable) {
+            ((Observable)gameObject).addObserver(this);
+        }
         gameObjects.add(gameObject);
     }
 
@@ -77,5 +83,10 @@ public class Game extends Canvas implements Runnable {
         frame.pack();
         frame.setResizable(false);
         frame.setVisible(true);
+    }
+
+    @Override
+    public void notify(GameObject gameObject, GameEvent event) {
+        System.out.println(event.name());
     }
 }

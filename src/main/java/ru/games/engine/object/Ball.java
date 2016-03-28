@@ -8,7 +8,7 @@ import java.util.Random;
 /**
  * Created by Crow on 09.02.2016.
  */
-public class Ball implements GameObject {
+public class Ball extends Observable implements GameObject {
     private Board board;
     private final int MOVE_SPEED_MODULO_IN_MILLIS = 10;
     private int x = 0;
@@ -50,19 +50,9 @@ public class Ball implements GameObject {
         x = new Long(Math.round(x + Math.cos(this.angle * Math.PI / 180))).intValue();
         y = new Long(Math.round(y + Math.sin(this.angle * Math.PI / 180))).intValue();
 
-        if(x <= 0 || this.x >= board.getWidth()) {
-            if(angle == 180) {
-                if(new Random().nextBoolean()) {
-                    angle = 315;
-                } else {
-                    angle = 45;
-                }
-            } else if(angle == 0) {
-                if(new Random().nextBoolean()) {
-                    angle = 135;
-                } else {
-                    angle = 225;
-                }
+        if(x <= 0 || x >= board.getWidth()) {
+            if(angle == 180 || angle == 0) {
+                angle = new Random().nextBoolean() ? 360 - Math.abs(angle - 135) : Math.abs(angle - 135);
             } else {
                 angle = 180 - angle;
                 if(angle < 0)
@@ -70,7 +60,7 @@ public class Ball implements GameObject {
             }
         }
 
-        if(y <= 0 || this.y >= board.getHeight()) { // 270 -> 90  269 -> 91
+        if(y <= 0 || y >= board.getHeight()) { // 270 -> 90  269 -> 91
             angle = 360 - angle;
         }
     }
