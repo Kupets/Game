@@ -64,7 +64,7 @@ public class Game implements Runnable, Observer {
 
     @Override
     public void notify(GameObject gameObject, GameEvent event) {
-        System.out.println(event.name());
+        System.out.println("Class - " + gameObject.getClass().getName() + "; Event - " + event.name() + ";");
     }
 
     public Board getBoard() {
