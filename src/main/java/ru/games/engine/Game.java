@@ -1,33 +1,27 @@
 package ru.games.engine;
 
+import ru.games.engine.object.Board;
 import ru.games.engine.object.GameEvent;
 import ru.games.engine.object.GameObject;
-import ru.games.engine.object.Observable;
 import ru.games.engine.object.Observer;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
 /**
  * Created by Crow on 27.01.2016.
  */
-public class Game extends Canvas implements Runnable, Observer {
+public class Game implements Runnable, Observer {
     ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     private boolean running;
+    private Board board;
 
 
-    public Game(String title, int width, int height) {
-        setPreferredSize(new Dimension(width, height));
-        // инициализируется техническая хрень
-        initJFame(title);
+    public Game() {
+        board = new Board();
     }
 
     public final void addToGame(GameObject gameObject) {
-        if(gameObject instanceof Observable) {
-            ((Observable)gameObject).addObserver(this);
-        }
         gameObjects.add(gameObject);
     }
 
@@ -46,27 +40,20 @@ public class Game extends Canvas implements Runnable, Observer {
     }
 
     private void init() {
-        BufferStrategy bs = getBufferStrategy();
-        if(bs == null) {
-            createBufferStrategy(3);
-            requestFocus();
-        }
+        board.init(board);
 
         for(GameObject gameObject : gameObjects) {
-            gameObject.init(this);
+            gameObject.init(board);
         }
     }
 
     private void render() {
-        BufferStrategy bs = getBufferStrategy();
-        // получаем Graphics из созданной нами BufferStrategy
-        Graphics g = bs.getDrawGraphics();
+        Graphics g = board.getGraphics();
+        board.draw(g);
         for(GameObject gameObject : gameObjects) {
             gameObject.draw(g);
         }
         g.dispose();
-        // показать
-        bs.show();
     }
 
     private void update() {
@@ -75,18 +62,12 @@ public class Game extends Canvas implements Runnable, Observer {
         }
     }
 
-    private void initJFame(String title) {
-        JFrame frame = new JFrame(title);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new BorderLayout());
-        frame.add(this, BorderLayout.CENTER);
-        frame.pack();
-        frame.setResizable(false);
-        frame.setVisible(true);
-    }
-
     @Override
     public void notify(GameObject gameObject, GameEvent event) {
         System.out.println(event.name());
+    }
+
+    public Board getBoard() {
+        return board;
     }
 }

@@ -9,19 +9,19 @@ import ru.games.engine.object.PlayerBar;
  * Created by Crow on 09.03.2016.
  */
 public class Launcher {
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 600;
-    private static final String TITLE = "Tenis. Bar fight!";
+
 
     public static void main(String[] args) {
-        Game game = new Game(TITLE, WIDTH, HEIGHT);
+        Game game = new Game();
 
         // добавляем игровые обьекты
-        Board board = new Board(WIDTH, HEIGHT);
+        Board board = game.getBoard();
         game.addToGame(board);
-        game.addToGame(new Ball(WIDTH/2, HEIGHT/2, board));
-        game.addToGame(new PlayerBar(0, HEIGHT/2, board));
-        game.addToGame(new AiBar(WIDTH + 3, HEIGHT/2, board));
+        Ball ball = new Ball(board.getWidth() / 2, board.getHeight() / 2, board);
+        ball.getInteract().addObserver(game);
+        game.addToGame(ball);
+        game.addToGame(new PlayerBar(0, board.getHeight() / 2, board));
+        game.addToGame(new AiBar(board.getWidth() - 7, board.getHeight() / 2, board));
 
         // запуск
         game.start();
