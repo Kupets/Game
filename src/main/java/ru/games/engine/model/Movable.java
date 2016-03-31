@@ -1,35 +1,39 @@
-package ru.games.engine.object;
+package ru.games.engine.model;
 
-import ru.games.engine.Sprite;
-
-import java.awt.Graphics;
+import ru.games.engine.object.Board;
+import ru.games.engine.object.Sprite;
 
 /**
  * Created by Crow on 30.03.2016.
  */
-public abstract class Movable implements GameObject {
-    protected int x = 0;
-    protected int y = 0;
+public abstract class Movable implements ObjectOnBoard {
     protected int DEFAULT_MOVE_SPEED_MODULO_IN_MILLIS = 10;
     protected Sprite sprite;
+    protected Board board;
 
+
+    public Movable(String spritePath, Board board) {
+        sprite = new Sprite(spritePath);
+        this.board = board;
+    }
 
     protected abstract void move();
 
-    @Override
-    public void draw(Graphics g) {
-        sprite.draw(g, x, y);
-    }
-
-    @Override
     public void init() {
     }
 
-    @Override
     public void update() {
         if(canMove()) {
             move();
         }
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public Sprite getSprite() {
+        return sprite;
     }
 
     private boolean canMove() {
@@ -37,19 +41,19 @@ public abstract class Movable implements GameObject {
     }
 
     public int getX() {
-        return x;
+        return this.sprite.getX();
     }
 
     public void setX(int x) {
-        this.x = x;
+        this.sprite.setX(x);
     }
 
     public int getY() {
-        return y;
+        return this.sprite.getY();
     }
 
     public void setY(int y) {
-        this.y = y;
+        this.sprite.setY(y);
     }
 
     public int getWidth() {

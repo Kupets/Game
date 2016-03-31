@@ -1,4 +1,4 @@
-package ru.games.engine;
+package ru.games.engine.object;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,6 +10,8 @@ import java.io.IOException;
  */
 public class Sprite {
     private Image image;
+    protected int x = 0;
+    protected int y = 0;
 
 
     public Sprite(String spritePath) {
@@ -28,7 +30,7 @@ public class Sprite {
         image = Toolkit.getDefaultToolkit().createImage(sourceImage.getSource());
     }
 
-    public void draw(Graphics g, int x, int y) {
+    public void draw(Graphics g) {
         g.drawImage(image, x, y, null);
     }
 
@@ -38,5 +40,21 @@ public class Sprite {
 
     public int getHeight() {
         return image.getHeight(null);
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 }

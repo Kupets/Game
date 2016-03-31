@@ -1,4 +1,6 @@
-package ru.games.engine.object;
+package ru.games.engine.model;
+
+import ru.games.engine.object.Board;
 
 import java.util.Random;
 
@@ -6,10 +8,6 @@ import java.util.Random;
  * Created by Crow on 10.03.2016.
  */
 public class AiBar extends Bar {
-
-    public AiBar(int x, int y, Board board) {
-        super(x, y, board);
-    }
 
     public AiBar(Board board) {
         super(board);
@@ -19,11 +17,11 @@ public class AiBar extends Bar {
     protected void move() {
         Random random = new Random();
         boolean isUp = random.nextBoolean();
-        if(isUp && y > 0) {
-            y--;
+        if(isUp && getY() > 0) {
+            setY(getY() - 1);
         }
-        if(!isUp && y < board.getHeight() - 50) {
-            y++;
+        if(!isUp && getY() < board.getHeight() - 50) {
+            setY(getY() + 1);
         }
     }
 }

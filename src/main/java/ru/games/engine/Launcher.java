@@ -1,5 +1,7 @@
 package ru.games.engine;
 
+import ru.games.engine.model.Game;
+
 /**
  * Created by Crow on 09.03.2016.
  */

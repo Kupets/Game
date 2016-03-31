@@ -7,7 +7,7 @@ import java.awt.image.BufferStrategy;
 /**
  * Created by Crow on 09.02.2016.
  */
-public class Board extends Canvas implements GameObject {
+public class Board extends Canvas {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private static final String TITLE = "Tenis. Bar fight!";
@@ -27,14 +27,15 @@ public class Board extends Canvas implements GameObject {
         }
     }
 
-    public void draw(Graphics g) {
+    public void clean() {
         // выбрать цвет
-        g.setColor(Color.black);
+        getGraphics().setColor(Color.black);
         // заполнить прямоугольник
-        g.fillRect(0, 0, getWidth(), getHeight());
+        getGraphics().fillRect(0, 0, getWidth(), getHeight());
     }
 
-    public void update() {
+    public void showObjs() {
+        getGraphics().dispose();
         // показать
         getBufferStrategy().show();
     }

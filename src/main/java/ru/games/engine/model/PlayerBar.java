@@ -1,8 +1,7 @@
-package ru.games.engine.object;
+package ru.games.engine.model;
 
-import ru.games.engine.KeyInputHandler;
-
-import java.awt.Component;
+import ru.games.engine.object.Board;
+import ru.games.engine.object.KeyInputHandler;
 
 /**
  * Created by Crow on 10.03.2016.
@@ -10,10 +9,6 @@ import java.awt.Component;
 public class PlayerBar extends Bar {
     private KeyInputHandler keyInputHandler = new KeyInputHandler();
 
-
-    public PlayerBar(int x, int y, Board board) {
-        super(x, y, board);
-    }
 
     public PlayerBar(Board board) {
         super(board);
@@ -27,10 +22,10 @@ public class PlayerBar extends Bar {
 
     @Override
     protected void move() {
-        if(keyInputHandler.isUpPressed() == true && y > 0) {
-            y--;
-        } else if(keyInputHandler.isDownPressed() == true && y < board.getHeight() - 50) {
-            y++;
+        if(keyInputHandler.isUpPressed() == true && getY() > 0) {
+            setY(getY() - 1);
+        } else if(keyInputHandler.isDownPressed() == true && getY() < board.getHeight() - 50) {
+            setY(getY() + 1);
         }
     }
 }

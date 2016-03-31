@@ -1,9 +1,9 @@
-package ru.games.engine.object;
+package ru.games.engine.event;
 
 /**
  * Created by Crow on 28.03.2016.
  */
-public enum GameEvent {
+public enum EventType {
     SCORE,
     OBJ_INTERACT,
     WALL_INTERACT

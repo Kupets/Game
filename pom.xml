@@ -38,7 +38,7 @@
                         </descriptorRefs>
                         <archive>
                             <manifest>
-                                <mainClass>ru.games.engine.Game</mainClass>
+                                <mainClass>ru.games.engine.model.Game</mainClass>
                             </manifest>
                         </archive>
                     </configuration>
