@@ -19,7 +19,7 @@ public class Board extends Canvas implements GameObject {
         initJFame(TITLE);
     }
 
-    public void init(Component component) {
+    public void init() {
         BufferStrategy bs = getBufferStrategy();
         if(bs == null) {
             createBufferStrategy(3);

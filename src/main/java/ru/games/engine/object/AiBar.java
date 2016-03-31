@@ -11,6 +11,10 @@ public class AiBar extends Bar {
         super(x, y, board);
     }
 
+    public AiBar(Board board) {
+        super(board);
+    }
+
     @Override
     protected void move() {
         Random random = new Random();
