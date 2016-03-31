@@ -24,4 +24,13 @@ public class AiBar extends Bar {
             setY(getY() + 1);
         }
     }
+
+    @Override
+    public void init() {
+        super.init();
+
+        setX(board.getWidth() - getWidth());
+        setY(board.getHeight() / 2);
+
+    }
 }

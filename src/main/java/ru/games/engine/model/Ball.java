@@ -20,6 +20,9 @@ public class Ball extends Movable {
 
     @Override
     public void init() {
+        setX(board.getWidth() / 2);
+        setY(board.getHeight() / 2);
+
         DEFAULT_MOVE_SPEED_MODULO_IN_MILLIS = 10;
         if(new Random().nextBoolean()) {
             angle = 360;

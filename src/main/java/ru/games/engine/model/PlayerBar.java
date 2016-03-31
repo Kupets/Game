@@ -17,6 +17,9 @@ public class PlayerBar extends Bar {
     @Override
     public void init() {
         super.init();
+
+        setX(0);
+        setY(board.getHeight() / 2);
         board.addKeyListener(keyInputHandler);
     }
 

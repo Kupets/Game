@@ -14,25 +14,21 @@ public class Game implements Runnable, EventHandler {
     List<ObjectOnBoard> objectOnBoards = new ArrayList<ObjectOnBoard>();
     private boolean running;
     private Board board;
-    private TenisObjects tenisObjects;
 
 
     public Game() {
         board = new Board();
 
-        tenisObjects = new TenisObjects(board);
-        tenisObjects.getInteract().addHandler(this);
-
+        Ball ball = new Ball(board);
+        ball.getInteract().addHandler(this);
         // добавляем игровые обьекты
-        addToGame(tenisObjects.getGameObjects());
+        addToGame(ball);
+        addToGame(new PlayerBar(board));
+        addToGame(new AiBar(board));
     }
 
-    public final void addToGame(ObjectOnBoard objectOnBoard) {
+    private void addToGame(ObjectOnBoard objectOnBoard) {
         objectOnBoards.add(objectOnBoard);
-    }
-
-    public final void addToGame(List<ObjectOnBoard> objectOnBoards) {
-        this.objectOnBoards.addAll(objectOnBoards);
     }
 
     public void start() {
@@ -50,7 +46,6 @@ public class Game implements Runnable, EventHandler {
     }
 
     private void init() {
-        tenisObjects.init();
         board.init();
         for(ObjectOnBoard objectOnBoard : objectOnBoards) {
             objectOnBoard.init();
@@ -72,9 +67,9 @@ public class Game implements Runnable, EventHandler {
     }
 
     public void notify(ObjectOnBoard objectOnBoard, EventType event) {
-//        if(EventType.WALL_INTERACT.equals(event)) {
-//            init();
-//        }
+        if(EventType.WALL_INTERACT.equals(event)) {
+            init();
+        }
         System.out.println("Class - " + objectOnBoard.getClass().getName() + "; Event - " + event.name() + ";");
     }
 }
