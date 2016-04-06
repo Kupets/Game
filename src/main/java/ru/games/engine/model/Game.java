@@ -5,6 +5,7 @@ import ru.games.engine.event.EventHandler;
 import ru.games.engine.event.EventType;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,8 +41,8 @@ public class Game implements Runnable, EventHandler {
         init();
 
         while(running) {
-            render();
             update();
+            render();
         }
     }
 
@@ -61,15 +62,16 @@ public class Game implements Runnable, EventHandler {
     }
 
     private void update() {
+        Date currentTime = new Date();
         for(ObjectOnBoard objectOnBoard : objectOnBoards) {
-            objectOnBoard.update();
+            objectOnBoard.update(currentTime);
         }
     }
 
     public void notify(ObjectOnBoard objectOnBoard, EventType event) {
-        if(EventType.WALL_INTERACT.equals(event)) {
-            init();
-        }
+//        if(EventType.WALL_INTERACT.equals(event)) {
+//            init();
+//        }
         System.out.println("Class - " + objectOnBoard.getClass().getName() + "; Event - " + event.name() + ";");
     }
 }

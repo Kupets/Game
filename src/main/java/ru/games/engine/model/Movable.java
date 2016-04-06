@@ -3,13 +3,16 @@ package ru.games.engine.model;
 import ru.games.engine.object.Board;
 import ru.games.engine.object.Sprite;
 
+import java.util.Date;
+
 /**
  * Created by Crow on 30.03.2016.
  */
 public abstract class Movable implements ObjectOnBoard {
-    protected int DEFAULT_MOVE_SPEED_MODULO_IN_MILLIS = 10;
+    protected int DEFAULT_MOVE_SPEED_MODULO_IN_MILLIS;
     protected Sprite sprite;
     protected Board board;
+    protected Date lastUpdate = new Date();
 
 
     public Movable(String spritePath, Board board) {
@@ -20,10 +23,11 @@ public abstract class Movable implements ObjectOnBoard {
     protected abstract void move();
 
     public void init() {
+        DEFAULT_MOVE_SPEED_MODULO_IN_MILLIS = 2;
     }
 
-    public void update() {
-        if(canMove()) {
+    public void update(Date currentTime) {
+        if(canMove(currentTime)) {
             move();
         }
     }
@@ -36,8 +40,14 @@ public abstract class Movable implements ObjectOnBoard {
         return sprite;
     }
 
-    private boolean canMove() {
-        return System.currentTimeMillis() % DEFAULT_MOVE_SPEED_MODULO_IN_MILLIS == 0;
+    private boolean canMove(Date currentTime) {
+        boolean canMove = false;
+        if(currentTime.getTime() - lastUpdate.getTime() >= DEFAULT_MOVE_SPEED_MODULO_IN_MILLIS) {
+            canMove = true;
+            lastUpdate = currentTime;
+        }
+
+        return canMove;
     }
 
     public int getX() {

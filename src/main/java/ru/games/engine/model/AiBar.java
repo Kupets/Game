@@ -31,6 +31,5 @@ public class AiBar extends Bar {
 
         setX(board.getWidth() - getWidth());
         setY(board.getHeight() / 2);
-
     }
 }
