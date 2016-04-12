@@ -9,8 +9,8 @@ import java.util.Random;
  */
 public class AiBar extends Bar {
 
-    public AiBar(Board board) {
-        super(board);
+    public AiBar(Board board, int x, int y) {
+        super(board, x, y);
     }
 
     @Override
@@ -28,8 +28,5 @@ public class AiBar extends Bar {
     @Override
     public void init() {
         super.init();
-
-        setX(board.getWidth() - getWidth());
-        setY(board.getHeight() / 2);
     }
 }

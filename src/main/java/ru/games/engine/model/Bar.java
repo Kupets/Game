@@ -7,7 +7,7 @@ import ru.games.engine.object.Board;
  */
 public abstract class Bar extends Movable {
 
-    public Bar(Board board) {
-        super("/bar.png", board);
+    public Bar(Board board, int x, int y) {
+        super("/bar.png", board, x, y);
     }
 }

@@ -13,10 +13,16 @@ public abstract class Movable implements ObjectOnBoard {
     protected Sprite sprite;
     protected Board board;
     protected Date lastUpdate = new Date();
+    protected int startX = 0;
+    protected int startY = 0;
 
 
-    public Movable(String spritePath, Board board) {
+    public Movable(String spritePath, Board board, int x, int y) {
         sprite = new Sprite(spritePath);
+        startX = x;
+        sprite.setX(startX);
+        startY = y;
+        sprite.setY(startY);
         this.board = board;
     }
 
@@ -24,6 +30,9 @@ public abstract class Movable implements ObjectOnBoard {
 
     public void init() {
         DEFAULT_MOVE_SPEED_MODULO_IN_MILLIS = 2;
+
+        setX(startX);
+        setY(startY);
     }
 
     public void update(Date currentTime) {

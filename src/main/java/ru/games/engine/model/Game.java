@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class Game implements Runnable, EventHandler {
     List<ObjectOnBoard> objectOnBoards = new ArrayList<ObjectOnBoard>();
+    List<Movable> interactables = new ArrayList<Movable>();
     private boolean running;
     private Board board;
 
@@ -20,16 +21,23 @@ public class Game implements Runnable, EventHandler {
     public Game() {
         board = new Board();
 
-        Ball ball = new Ball(board);
+        Ball ball = new Ball(board, board.getWidth() / 2, board.getHeight() / 3);
         ball.getInteract().addHandler(this);
         // добавляем игровые обьекты
         addToGame(ball);
-        addToGame(new PlayerBar(board));
-        addToGame(new AiBar(board));
+        Ball ball2 = new Ball(board, board.getWidth() / 2, (board.getHeight() / 3) * 2);
+        ball2.getInteract().addHandler(this);
+        // добавляем игровые обьекты
+        addToGame(ball2);
+        addToGame(new PlayerBar(board, 0, board.getHeight() / 2));
+        addToGame(new AiBar(board, board.getWidth() - 7, board.getHeight() / 2));
     }
 
     private void addToGame(ObjectOnBoard objectOnBoard) {
         objectOnBoards.add(objectOnBoard);
+        if(objectOnBoard instanceof Movable) {
+            interactables.add((Movable)objectOnBoard);
+        }
     }
 
     public void start() {
@@ -61,15 +69,25 @@ public class Game implements Runnable, EventHandler {
         board.showObjs();
     }
 
+    private void interact(ObjectOnBoard objectOnBoard) {
+        if(objectOnBoard instanceof Interactable) {
+            List<Movable> currentInteractables = new ArrayList<Movable>();
+            currentInteractables.addAll(interactables);
+            currentInteractables.remove(objectOnBoard);
+            ((Interactable)objectOnBoard).interact(currentInteractables);
+        }
+    }
+
     private void update() {
         Date currentTime = new Date();
         for(ObjectOnBoard objectOnBoard : objectOnBoards) {
+            interact(objectOnBoard);
             objectOnBoard.update(currentTime);
         }
     }
 
     public void notify(ObjectOnBoard objectOnBoard, EventType event) {
-//        if(EventType.WALL_INTERACT.equals(event)) {
+//        if(EventType.SCORE.equals(event)) {
 //            init();
 //        }
         System.out.println("Class - " + objectOnBoard.getClass().getName() + "; Event - " + event.name() + ";");

@@ -10,16 +10,14 @@ public class PlayerBar extends Bar {
     private KeyInputHandler keyInputHandler = new KeyInputHandler();
 
 
-    public PlayerBar(Board board) {
-        super(board);
+    public PlayerBar(Board board, int x, int y) {
+        super(board, x, y);
     }
 
     @Override
     public void init() {
         super.init();
 
-        setX(0);
-        setY(board.getHeight() / 2);
         board.addKeyListener(keyInputHandler);
     }
 
