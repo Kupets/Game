@@ -4,6 +4,7 @@ import ru.games.engine.object.Board;
 import ru.games.engine.event.EventHandler;
 import ru.games.engine.event.EventType;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,14 +22,20 @@ public class Game implements Runnable, EventHandler {
     public Game() {
         board = new Board();
 
+        Score score = new Score(board, board.getWidth() / 2, board.getHeight() / 10);
+
         Ball ball = new Ball(board, board.getWidth() / 2, board.getHeight() / 3);
         ball.getInteract().addHandler(this);
+        ball.getInteract().addHandler(score);
+//        addToGame(ball);
+
+//        ball = new Ball(board, board.getWidth() / 2, (board.getHeight() / 3) * 2);
+//        ball.getInteract().addHandler(this);
+//        ball.getInteract().addHandler(score);
+
         // добавляем игровые обьекты
+        addToGame(score);
         addToGame(ball);
-        Ball ball2 = new Ball(board, board.getWidth() / 2, (board.getHeight() / 3) * 2);
-        ball2.getInteract().addHandler(this);
-        // добавляем игровые обьекты
-        addToGame(ball2);
         addToGame(new PlayerBar(board, 0, board.getHeight() / 2));
         addToGame(new AiBar(board, board.getWidth() - 7, board.getHeight() / 2));
     }
@@ -62,9 +69,11 @@ public class Game implements Runnable, EventHandler {
     }
 
     private void render() {
-        board.clean();
+        //getGraphics() всегда возвращает новый инстанс
+        Graphics g = board.getGraphics();
+        board.clean(g);
         for(ObjectOnBoard objectOnBoard : objectOnBoards) {
-            objectOnBoard.getSprite().draw(board.getGraphics());
+            objectOnBoard.draw(g);
         }
         board.showObjs();
     }

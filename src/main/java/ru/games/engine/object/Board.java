@@ -22,16 +22,16 @@ public class Board extends Canvas {
     public void init() {
         BufferStrategy bs = getBufferStrategy();
         if(bs == null) {
-            createBufferStrategy(3);
+            createBufferStrategy(2);
             requestFocus();
         }
     }
 
-    public void clean() {
+    public void clean(Graphics g) {
         // выбрать цвет
-        getGraphics().setColor(Color.black);
+        g.setColor(Color.BLUE);
         // заполнить прямоугольник
-        getGraphics().fillRect(0, 0, getWidth(), getHeight());
+        g.fillRect(0, 0, getWidth(), getHeight());
     }
 
     public void showObjs() {

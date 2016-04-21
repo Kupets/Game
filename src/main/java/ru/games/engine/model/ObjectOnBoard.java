@@ -1,8 +1,8 @@
 package ru.games.engine.model;
 
 import ru.games.engine.object.Board;
-import ru.games.engine.object.Sprite;
 
+import java.awt.*;
 import java.util.Date;
 
 /**
@@ -11,10 +11,10 @@ import java.util.Date;
 public interface ObjectOnBoard {
     // вызывается, когда игра началась и при рестарте
     void init();
-    // вызывается каждый фрейм
+    // вызывается каждый фрейм для обновления игрового состояния
     void update(Date currentTime);
-    // картинка, используется вместо рисования обьекта
-    Sprite getSprite();
+    // рисуем обьекты каждый фрейм
+    void draw(Graphics g);
     // подчеркиваем, что обьект должен находиться на доске
     Board getBoard();
 }

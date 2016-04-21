@@ -3,6 +3,7 @@ package ru.games.engine.model;
 import ru.games.engine.object.Board;
 import ru.games.engine.object.Sprite;
 
+import java.awt.*;
 import java.util.Date;
 
 /**
@@ -20,9 +21,7 @@ public abstract class Movable implements ObjectOnBoard {
     public Movable(String spritePath, Board board, int x, int y) {
         sprite = new Sprite(spritePath);
         startX = x;
-        sprite.setX(startX);
         startY = y;
-        sprite.setY(startY);
         this.board = board;
     }
 
@@ -45,8 +44,8 @@ public abstract class Movable implements ObjectOnBoard {
         return board;
     }
 
-    public Sprite getSprite() {
-        return sprite;
+    public void draw(Graphics g) {
+        sprite.draw(g);
     }
 
     private boolean canMove(Date currentTime) {
