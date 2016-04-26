@@ -22,7 +22,9 @@ public class Game implements Runnable, EventHandler {
     public Game() {
         board = new Board();
 
-        Score score = new Score(board, board.getWidth() / 2, board.getHeight() / 10);
+        Score score = new Score(board);
+        score.setX(board.getWidth() / 2 - score.getWidth() / 2);
+        score.setY(board.getHeight() / 10);
 
         Ball ball = new Ball(board, board.getWidth() / 2, board.getHeight() / 3);
         ball.getInteract().addHandler(this);

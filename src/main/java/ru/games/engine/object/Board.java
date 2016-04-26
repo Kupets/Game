@@ -29,7 +29,7 @@ public class Board extends Canvas {
 
     public void clean(Graphics g) {
         // выбрать цвет
-        g.setColor(Color.BLUE);
+        g.setColor(Color.black);
         // заполнить прямоугольник
         g.fillRect(0, 0, getWidth(), getHeight());
     }

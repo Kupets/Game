@@ -36,8 +36,9 @@ public class Ball extends Movable implements Interactable {
             DEFAULT_MOVE_SPEED_MODULO_IN_MILLIS *= 1.5;
         } else {
             angle = 180 - angle;
-            if(angle < 0)
+            if(angle < 0) {
                 angle += 360;
+            }
         }
     }
 
@@ -63,10 +64,6 @@ public class Ball extends Movable implements Interactable {
 
     public void interact(List<Movable> movables) {
         for(Movable movable : movables) {
-//            if(getX() < movable.getX() + movable.getWidth() && getX() > movable.getX() &&
-//                    getY() < movable.getY() + movable.getHeight() && getY() > movable.getY()) {
-//                setX(movable.getX() + movable.getWidth() + 1);
-
             if(!(getX() + getWidth() < movable.getX() || movable.getX() + movable.getWidth() < getX() ||
                     getY() + getHeight() < movable.getY() || movable.getY() + movable.getHeight() < getY())) {
                 changeAngle();
