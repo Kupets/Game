@@ -1,7 +1,7 @@
 Необходима установленная JAVA версии 1.7 или выше. Для сборки необходим maven версии 3.2.
 
 Что бы собрать проект Maven'ом выполнить:
-mvn clean install
+mvn package
 
 Что бы запустить проект из корня выполнить:
-java -jar target/tenis.jar
+java -jar tenis.jar

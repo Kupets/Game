@@ -37,12 +37,15 @@
                         <descriptorRefs>
                             <descriptorRef>jar-with-dependencies</descriptorRef>
                         </descriptorRefs>
+                        <!-- change output directory -->
+                        <outputDirectory>${basedir}</outputDirectory>
                         <!-- file name without version -->
                         <finalName>tenis</finalName>
                         <!-- without jar-with-dependencies in file name -->
                         <appendAssemblyId>false</appendAssemblyId>
                         <archive>
                             <manifest>
+                                <!-- public static void main(String[] args) class -->
                                 <mainClass>ru.games.engine.Launcher</mainClass>
                             </manifest>
                         </archive>
