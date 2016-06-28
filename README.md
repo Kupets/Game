@@ -13,4 +13,4 @@ mvn package
 java -jar tenis.jar
 ```
 
-![](https://github.com/Tenis/tree/master/src/main/resources/tenis.png)
+![](https://github.com/Kupets/Tenis/blob/master/src/main/resources/tenis.png)
