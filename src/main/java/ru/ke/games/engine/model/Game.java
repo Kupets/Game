@@ -1,8 +1,8 @@
-package ru.games.engine.model;
+package ru.ke.games.engine.model;
 
-import ru.games.engine.object.Board;
-import ru.games.engine.event.EventHandler;
-import ru.games.engine.event.EventType;
+import ru.ke.games.engine.object.Board;
+import ru.ke.games.engine.event.EventHandler;
+import ru.ke.games.engine.event.EventType;
 
 import java.awt.*;
 import java.util.ArrayList;

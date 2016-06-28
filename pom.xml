@@ -46,7 +46,7 @@
                         <archive>
                             <manifest>
                                 <!-- public static void main(String[] args) class -->
-                                <mainClass>ru.games.engine.Launcher</mainClass>
+                                <mainClass>ru.ke.games.engine.Launcher</mainClass>
                             </manifest>
                         </archive>
                     </configuration>

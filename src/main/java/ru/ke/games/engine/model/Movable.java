@@ -1,7 +1,7 @@
-package ru.games.engine.model;
+package ru.ke.games.engine.model;
 
-import ru.games.engine.object.Board;
-import ru.games.engine.object.Sprite;
+import ru.ke.games.engine.object.Board;
+import ru.ke.games.engine.object.Sprite;
 
 import java.awt.*;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package ru.games.engine.object;
+package ru.ke.games.engine.object;
 
 import javax.swing.*;
 import java.awt.*;

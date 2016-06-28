@@ -1,4 +1,4 @@
-package ru.games.engine.event;
+package ru.ke.games.engine.event;
 
 /**
  * Created by Crow on 28.03.2016.

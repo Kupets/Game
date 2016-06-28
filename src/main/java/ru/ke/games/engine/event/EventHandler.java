@@ -1,6 +1,6 @@
-package ru.games.engine.event;
+package ru.ke.games.engine.event;
 
-import ru.games.engine.model.ObjectOnBoard;
+import ru.ke.games.engine.model.ObjectOnBoard;
 
 /**
  * Created by Crow on 28.03.2016.

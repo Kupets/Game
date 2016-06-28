@@ -1,4 +1,4 @@
-package ru.games.engine.model;
+package ru.ke.games.engine.model;
 
 import java.util.List;
 

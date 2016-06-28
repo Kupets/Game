@@ -1,6 +1,6 @@
-package ru.games.engine;
+package ru.ke.games.engine;
 
-import ru.games.engine.model.Game;
+import ru.ke.games.engine.model.Game;
 
 /**
  * Created by Crow on 09.03.2016.
